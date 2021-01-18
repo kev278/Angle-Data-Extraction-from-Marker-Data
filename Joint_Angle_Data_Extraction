@@ -1,0 +1,232 @@
+%%
+%Import Right Leg Data
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Right_21Aug','A4:A845');
+R_Hip_SP_X = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Right_21Aug','B4:B845');
+R_Hip_SP_Y = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Right_21Aug','D4:D845');
+R_Knee_SP_X = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Right_21Aug','E4:E845');
+R_Knee_SP_Y = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Right_21Aug','G4:G845');
+R_Ankle_SP_X = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Right_21Aug','H4:H845');
+R_Ankle_SP_Y = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Right_21Aug','J4:J845');
+R_Toe_SP_X = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Right_21Aug','K4:K845');
+R_Toe_SP_Y = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Right_21Aug','M4:M845');
+R_Sacrum_SP_X = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Right_21Aug','N4:N845');
+R_Sacrum_SP_Y = reshape([raw{:}],size(raw));
+clearvars raw;
+
+
+%%
+
+%Import Left Leg Data
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Left_21Aug','A4:A845');
+L_Hip_SP_X = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Left_21Aug','B4:B845');
+L_Hip_SP_Y = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Left_21Aug','D4:D845');
+L_Knee_SP_X = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Left_21Aug','E4:E845');
+L_Knee_SP_Y = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Left_21Aug','G4:G845');
+L_Ankle_SP_X = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Left_21Aug','H4:H845');
+L_Ankle_SP_Y = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Left_21Aug','J4:J845');
+L_Toe_SP_X = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Left_21Aug','K4:K845');
+L_Toe_SP_Y = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Right_21Aug','M4:M845');
+L_Sacrum_SP_X = reshape([raw{:}],size(raw));
+clearvars raw;
+[~, ~, raw] = xlsread('C:\Users\keval\OneDrive\Desktop\Thapar\20200821Testing_markerdata.xlsx','DRDO_data_Right_21Aug','N4:N845');
+L_Sacrum_SP_Y = reshape([raw{:}],size(raw));
+clearvars raw;
+
+
+%%
+%Link Lengths
+R_Pelvis= lengthfunction(R_Sacrum_SP_X, R_Hip_SP_X,R_Sacrum_SP_Y,R_Hip_SP_Y);
+L_Pelvis= lengthfunction(L_Sacrum_SP_X, L_Hip_SP_X,L_Sacrum_SP_Y,L_Hip_SP_Y);
+R_Thigh= lengthfunction(R_Hip_SP_X, R_Knee_SP_X,R_Hip_SP_Y,R_Knee_SP_Y);
+L_Thigh= lengthfunction(L_Hip_SP_X, L_Knee_SP_X,L_Hip_SP_Y,L_Knee_SP_Y);
+R_Shank= lengthfunction(R_Knee_SP_X, R_Ankle_SP_X,R_Knee_SP_Y,R_Ankle_SP_Y);
+L_Shank= lengthfunction(L_Knee_SP_X, L_Ankle_SP_X,L_Knee_SP_Y,L_Ankle_SP_Y);
+R_Toe= lengthfunction(R_Ankle_SP_X, R_Toe_SP_X,R_Ankle_SP_Y,R_Toe_SP_Y);
+L_Toe= lengthfunction(L_Ankle_SP_X, L_Toe_SP_X,L_Ankle_SP_Y,L_Toe_SP_Y);
+
+%%
+%Lengths needed to find joint angles
+R_Sacrum_to_Knee=lengthfunction(R_Sacrum_SP_X, R_Knee_SP_X,R_Sacrum_SP_Y,R_Knee_SP_Y);
+R_Hip_to_Ankle=lengthfunction(R_Hip_SP_X, R_Ankle_SP_X,R_Hip_SP_Y,R_Ankle_SP_Y);
+R_Knee_to_Toe=lengthfunction(R_Knee_SP_X, R_Toe_SP_X,R_Knee_SP_Y,R_Toe_SP_Y);
+L_Sacrum_to_Knee=lengthfunction(L_Sacrum_SP_X, L_Knee_SP_X,L_Sacrum_SP_Y,L_Knee_SP_Y);
+L_Hip_to_Ankle=lengthfunction(L_Hip_SP_X, L_Ankle_SP_X,L_Hip_SP_Y,L_Ankle_SP_Y);
+L_Knee_to_Toe=lengthfunction(L_Knee_SP_X, L_Toe_SP_X,L_Knee_SP_Y,L_Toe_SP_Y);
+
+%%
+%Calculating joint angles
+R_Theta_Hip=anglefunction(R_Pelvis,R_Thigh,R_Sacrum_to_Knee);
+R_Theta_Knee=anglefunction(R_Thigh,R_Shank,R_Hip_to_Ankle);
+R_Theta_Ankle=anglefunction(R_Shank,R_Toe,R_Knee_to_Toe);
+L_Theta_Hip=anglefunction(L_Pelvis,L_Thigh,L_Sacrum_to_Knee);
+L_Theta_Knee=anglefunction(L_Thigh,L_Shank,L_Hip_to_Ankle);
+L_Theta_Ankle=anglefunction(L_Shank,L_Toe,L_Knee_to_Toe);
+
+%%
+%Average link lengths are added to robot model
+%Build the robot model
+L(1) = Link('d',0,'a',221.8205,'alpha',0);
+L(2) = Link('d',0,'a',470.8131,'alpha',0);
+L(3) = Link('d',0,'a',420.8565,'alpha',0);
+L(4) = Link('d',0,'a',139.7610,'alpha',0);
+
+Constant_Sacrum=zeros(842,1);
+Leg=SerialLink([L(1) L(2) L(3) L(4)],'name','Leg');
+%Feeding the extracted angles to the model
+% figure(1);
+% title('Right Leg')
+% Leg.plot([Constant_Sacrum R_Theta_Hip-pi/2 R_Theta_Knee+pi R_Theta_Ankle])
+% figure(2);
+% title('Left Leg')
+% Leg.plot([Constant_Sacrum L_Theta_Hip-pi/2 L_Theta_Knee+pi L_Theta_Ankle])
+%Computing forward kinematics
+R_Forward_Kinematics=Leg.fkine([Constant_Sacrum R_Theta_Hip-pi/2 R_Theta_Knee+pi R_Theta_Ankle]);
+L_Forward_Kinematics=Leg.fkine([Constant_Sacrum L_Theta_Hip L_Theta_Knee+pi L_Theta_Ankle]);
+
+%%
+%Extracting angle data from the model
+R_Inverse_Kinematics=Leg.ikine([R_Forward_Kinematics],'mask',[1 1 1 1 0 0]);
+L_Inverse_Kinematics=Leg.ikine([L_Forward_Kinematics],'mask',[1 1 1 1 0 0]);
+
+R_Theta_Model_Hip=zeros(842,1);
+R_Theta_Model_Knee=zeros(842,1);
+R_Theta_Model_Ankle=zeros(842,1);
+L_Theta_Model_Hip=zeros(842,1);
+L_Theta_Model_Knee=zeros(842,1);
+L_Theta_Model_Ankle=zeros(842,1);
+
+for i=1:842
+    R_Theta_Model_Hip(i)=R_Inverse_Kinematics(i,2);
+end
+for i=1:842
+    R_Theta_Model_Knee(i)=R_Inverse_Kinematics(i,3);
+end
+for i=1:842
+    R_Theta_Model_Ankle(i)=R_Inverse_Kinematics(i,4);
+end
+for i=1:842
+    L_Theta_Model_Hip(i)=L_Inverse_Kinematics(i,2);
+end
+for i=1:842
+    L_Theta_Model_Knee(i)=L_Inverse_Kinematics(i,3);
+end
+for i=1:842
+    L_Theta_Model_Ankle(i)=L_Inverse_Kinematics(i,4);
+end
+
+%%
+%Plotting and comparing angle data
+figure(3);
+title('R Hip Joint Angle')
+plot(R_Theta_Hip)
+xlabel('Time')
+ylabel('Angle in Radian')
+figure(4)
+plot(R_Theta_Model_Hip,'--')
+xlabel('Time')
+ylabel('Angle in Radian')
+
+
+figure(5);
+title('R Knee Joint Angle')
+plot(R_Theta_Knee)
+xlabel('Time')
+ylabel('Angle in Radian')
+figure(6)
+plot(-R_Theta_Model_Knee,'--')
+xlabel('Time')
+ylabel('Angle in Radian')
+
+
+figure(7);
+title('R Ankle Joint Angle')
+plot(R_Theta_Ankle)
+xlabel('Time')
+ylabel('Angle in Radian')
+figure(8);
+plot(-R_Theta_Model_Ankle,'--')
+xlabel('Time')
+ylabel('Angle in Radian')
+legend('R Theta Ankle','R Theta Model Ankle')
+
+figure(6);
+title('L Hip Joint Angle')
+plot(L_Theta_Hip)
+xlabel('Time')
+ylabel('Angle in Radian')
+hold on;
+plot(L_Theta_Model_Hip,'--')
+legend('L Theta Hip','L Theta Model Hip')
+
+figure(7);
+title('L Knee Joint Angle')
+plot(L_Theta_Knee)
+xlabel('Time')
+ylabel('Angle in Radian')
+hold on;
+plot(L_Theta_Model_Knee,'--')
+legend('L Theta Knee','L Theta Model Knee')
+
+figure(8);
+title('L Ankle Joint Angle')
+plot(L_Theta_Ankle)
+xlabel('Time')
+ylabel('Angle in Radian')
+hold on;
+plot(L_Theta_Model_Ankle,'--')
+legend('L Theta Ankle','L Theta Model Ankle')
+
+
+
+
+%%
+%Function to calculate the link lengths at every instant
+function Z=lengthfunction(X1,X2,Y1,Y2)
+Z=zeros(842,1);
+for i=1:842
+    Z(i)=sqrt((X1(i)-X2(i))^2+(Y1(i)-Y2(i))^2);
+end
+end
+
+%%
+%Function to calculate joint angles at every instant
+function angle=anglefunction(A,B,C)
+angle=zeros(842,1);
+for i=1:842
+    angle(i)=acos((A(i)^2+B(i)^2-C(i)^2)/(2*A(i)*B(i)));
+end
+end
